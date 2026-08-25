@@ -86,6 +86,12 @@
   padding-top: 0;
 }
 
+/* 首页：VPDocFooter（更新时间 / 上下篇）对落地页无意义，
+   且空 footer 仍带 64px margin-top 形成死空间，整体隐藏 */
+.VPDoc:has(.home) .VPDocFooter {
+  display: none;
+}
+
 @media (min-width: 960px) {
   .VPDoc:not(.has-sidebar) .container:has(.home),
   .VPDoc:not(.has-sidebar) .content:has(.home) {
