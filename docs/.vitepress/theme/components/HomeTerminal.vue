@@ -14,11 +14,22 @@
         <span class="op">\</span>
       </div>
       <div class="line ind"><span class="key">-H</span> <span class="str">"Authorization: Bearer sk-ta-••••"</span> <span class="op">\</span></div>
-      <div class="line ind"><span class="key">-d</span> <span class="str">'{"model":"claude-sonnet-5","stream":true,</span></div>
+      <div class="line ind"><span class="key">-H</span> <span class="str">"Content-Type: application/json"</span> <span class="op">\</span></div>
+      <div class="line ind"><span class="key">-d</span> <span class="str">'{"model":"claude-sonnet-5",</span></div>
       <div class="line ind2"><span class="str">"messages":[{"role":"user","content":"介绍一下 Team-API"}]}'</span></div>
       <div class="blank"></div>
-      <div class="line"><span class="sse">data:</span> <span class="json">{"choices":[{"delta":{"content":"多租户大模型 API 网关…"}}]}</span></div>
-      <div class="line"><span class="sse">data:</span> <span class="json">{"usage":{"prompt_tokens":21,"total_tokens":128}}</span></div>
+      <div class="line"><span class="op">{</span></div>
+      <div class="line j2"><span class="key">"id"</span><span class="op">:</span> <span class="str">"chatcmpl-m3x8k2a1"</span><span class="op">,</span></div>
+      <div class="line j2"><span class="key">"object"</span><span class="op">:</span> <span class="str">"chat.completion"</span><span class="op">,</span></div>
+      <div class="line j2"><span class="key">"created"</span><span class="op">:</span> <span class="num">1756204812</span><span class="op">,</span></div>
+      <div class="line j2"><span class="key">"model"</span><span class="op">:</span> <span class="str">"claude-sonnet-5"</span><span class="op">,</span></div>
+      <div class="line j2"><span class="key">"choices"</span><span class="op">:</span> <span class="op">[{</span></div>
+      <div class="line j4"><span class="key">"index"</span><span class="op">:</span> <span class="num">0</span><span class="op">,</span></div>
+      <div class="line j4"><span class="key">"message"</span><span class="op">:</span> <span class="op">{</span><span class="key">"role"</span><span class="op">:</span><span class="str">"assistant"</span><span class="op">,</span><span class="key">"content"</span><span class="op">:</span><span class="str">"Team-API 是多租户大模型 API 网关"</span><span class="op">},</span></div>
+      <div class="line j4"><span class="key">"finish_reason"</span><span class="op">:</span> <span class="str">"stop"</span></div>
+      <div class="line j2"><span class="op">}],</span></div>
+      <div class="line j2"><span class="key">"usage"</span><span class="op">:</span> <span class="op">{</span><span class="key">"prompt_tokens"</span><span class="op">:</span><span class="num">21</span><span class="op">,</span><span class="key">"completion_tokens"</span><span class="op">:</span><span class="num">98</span><span class="op">,</span><span class="key">"total_tokens"</span><span class="op">:</span><span class="num">119</span><span class="op">}</span></div>
+      <div class="line"><span class="op">}</span></div>
       <div class="line"><span class="cursor"></span></div>
     </div>
   </div>
@@ -73,6 +84,9 @@
 }
 .line.ind { padding-left: 14px; }
 .line.ind2 { padding-left: 28px; }
+/* JSON 缩进：按 12.5px 等宽字体的 2ch / 4ch 对齐 */
+.line.j2 { padding-left: 15px; }
+.line.j4 { padding-left: 30px; }
 .blank { height: 10px; }
 
 .prompt { color: #2dd4bf; margin-right: 6px; }
@@ -81,8 +95,7 @@
 .key { color: #79c0ff; }
 .str { color: #a5d6ff; }
 .op { color: #8b949e; }
-.sse { color: #d2a8ff; }
-.json { color: #e6edf3; }
+.num { color: #d2a8ff; }
 
 .cursor {
   display: inline-block;

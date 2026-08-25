@@ -86,6 +86,6 @@ Team-API 基于 **AGPL-3.0** 许可发布：个人学习、研究、内部使用
 
 ## 下一步
 
-- 想快速跑起来？看 [快速开始](/getting-started)
+- 想快速跑起来？看 [Docker Compose 部署](/deploy/docker-compose)
 - 想了解能做什么？看 [功能特性](/intro/features)
 - 想了解整体设计？看 [架构概览](/intro/architecture)

@@ -104,7 +104,7 @@ const moreFeatures = [
         计费、限流、监控与多租户管理，一站具备。
       </p>
       <div class="actions">
-        <a class="btn btn-primary" href="/getting-started">快速开始</a>
+        <a class="btn btn-primary" href="/deploy/docker-compose">快速开始</a>
         <a
           class="btn btn-ghost"
           href="https://team-api.net"
@@ -164,20 +164,6 @@ const moreFeatures = [
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta">
-      <h2 class="section-title">5 分钟，部署你自己的大模型网关</h2>
-      <p class="section-sub">一条 docker compose 命令，接入你的第一个渠道。</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="/getting-started">快速开始</a>
-        <a
-          class="btn btn-ghost"
-          href="https://team-api.net"
-          target="_blank"
-          rel="noopener noreferrer"
-        >在线演示 ↗</a>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -250,6 +236,8 @@ const moreFeatures = [
   border-radius: 12px;
   font-size: 15px;
   font-weight: 500;
+  /* 覆盖 .vp-doc a 的 underline（scoped 属性选择器优先级更高） */
+  text-decoration: none;
   transition: all 0.2s;
 }
 
@@ -383,18 +371,9 @@ const moreFeatures = [
   color: var(--vp-c-text-1);
 }
 
-.section-sub {
-  margin: 14px auto 0;
-  max-width: 560px;
-  font-size: 15px;
-  line-height: 1.7;
-  text-align: center;
-  color: var(--vp-c-text-2);
-}
-
 /* ---------- 更多能力 ---------- */
 .more {
-  padding: 88px 0 0;
+  padding: 88px 0 96px;
   border-top: 1px solid var(--vp-c-border);
 }
 
@@ -438,19 +417,6 @@ const moreFeatures = [
   font-size: 13px;
   line-height: 1.6;
   color: var(--vp-c-text-2);
-}
-
-/* ---------- CTA ---------- */
-.cta {
-  margin-top: 88px;
-  padding: 80px 24px;
-  text-align: center;
-  border-top: 1px solid var(--vp-c-border);
-  background: radial-gradient(
-    50% 60% at 50% 100%,
-    color-mix(in srgb, var(--vp-c-brand-1) 6%, transparent),
-    transparent 75%
-  );
 }
 
 /* ---------- 响应式 ---------- */

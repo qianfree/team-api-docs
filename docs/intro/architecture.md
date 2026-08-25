@@ -194,7 +194,7 @@ flowchart LR
 
 ## 延伸阅读
 
-- [快速开始](/getting-started) —— 5 分钟跑起完整栈
+- [Docker Compose 部署](/deploy/docker-compose) —— 5 分钟跑起完整栈
 - [运行配置](/config/config-yaml) · [系统设置](/config/settings-overview) —— 全部配置项
 - [五层额度模型](/guide/quota) · [计费与对账](/guide/billing) —— 核心业务规则
 - [排障指南](/troubleshooting/) —— Request ID 全链路排查
