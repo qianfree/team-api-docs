@@ -57,6 +57,8 @@ bob,Bob Wang,bob@example.com,admin,gpt-4o;claude-sonnet-4-5
 
 ## 成员详情
 
+![租户控制台 — 成员详情](/images/tenant_member_detail.png)
+
 ### 用量概览
 
 今日请求数、本月请求数、本月 Token 用量（输入 / 输出分列）、本月消费、API Key 数量五张统计卡，成员的成本一目了然。
@@ -71,7 +73,7 @@ bob,Bob Wang,bob@example.com,admin,gpt-4o;claude-sonnet-4-5
 | 总额度 | 设一个累计消费上限（USD），用完即止 |
 | 周期性 | 按天 / 周 / 月重置的周期额度，卡片展示已用百分比与下次重置时间 |
 
-请求在转发前校验成员额度，不足即拒绝（见[五层额度模型](/guide/quota)），不会消耗上游成本。
+请求在转发前校验成员额度，不足即拒绝，不会消耗上游成本。
 
 ### 可用模型
 
@@ -94,4 +96,3 @@ bob,Bob Wang,bob@example.com,admin,gpt-4o;claude-sonnet-4-5
 
 - [API Key 管理](/guide/tenant/api-keys) —— 成员个人的 Key 自助管理
 - [项目管理](/guide/tenant/projects) —— 按项目组织资源与预算
-- [五层额度模型](/guide/quota) —— 成员额度在计费链路中的位置

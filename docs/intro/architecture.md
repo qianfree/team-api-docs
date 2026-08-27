@@ -140,8 +140,6 @@ stateDiagram-v2
 | 实际用量 < 预扣 | 结算实际用量，差额即时退回 |
 | 流式响应 | 按流式协议解析真实 usage 后结算 |
 
-计费规则、模型倍率与对账细节见[计费与对账](/guide/billing)。
-
 ## 渠道健康与故障转移
 
 调度引擎按「候选 → 尝试 → 反馈」的闭环工作：
@@ -196,5 +194,4 @@ flowchart LR
 
 - [Docker Compose 部署](/deploy/docker-compose) —— 5 分钟跑起完整栈
 - [运行配置](/config/config-yaml) · [系统设置](/config/settings-overview) —— 全部配置项
-- [五层额度模型](/guide/quota) · [计费与对账](/guide/billing) —— 核心业务规则
 - [排障指南](/troubleshooting/) —— Request ID 全链路排查

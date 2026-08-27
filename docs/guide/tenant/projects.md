@@ -43,6 +43,10 @@ flowchart TD
 
 ## 项目详情
 
+详情页由「基本信息 / API 密钥 / 用量统计」三个 Tab 组成，分别对应下文的概览、项目密钥与用量。
+
+![租户控制台 — 项目详情](/images/tenant_project_detail.png)
+
 ### 概览
 
 项目基本信息、预算使用进度（按月消费 / 预算计算，70% 起变黄、90% 起变红）、活跃 Key 数、本月请求数与消费汇总。
@@ -71,4 +75,3 @@ flowchart TD
 
 - [API Key 管理](/guide/tenant/api-keys) —— Key 的通用配置说明
 - [团队管理](/guide/tenant/team) —— 成员级额度与授权
-- [五层额度模型](/guide/quota) —— 项目预算在计费链路中的位置

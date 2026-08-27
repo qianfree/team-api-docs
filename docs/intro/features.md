@@ -15,8 +15,8 @@ title: 功能特性
 | OpenAI 兼容 API | 替换 `base_url` 即可迁移 | [OpenAI 兼容接口](/api/openai-compatible) |
 | 多协议客户端接入 | Claude / Gemini 原生协议端点直连 | [Claude 接口](/api/anthropic) · [Gemini 接口](/api/gemini) |
 | 智能渠道调度 | 优先级 / 权重 / 故障转移 / 渠道亲和 | [架构概览](/intro/architecture#渠道健康与故障转移) |
-| 五层额度模型 | 钱包 → 套餐 → 成员 → 项目 → Key | [五层额度模型](/guide/quota) |
-| 实时计费引擎 | 预扣 → 结算 → 退款，并发安全 | [计费与对账](/guide/billing) |
+| 五层额度模型 | 钱包 → 套餐 → 成员 → 项目 → Key | [架构概览](/intro/architecture#计费引擎状态机) |
+| 实时计费引擎 | 预扣 → 结算 → 退款，并发安全 | [架构概览](/intro/architecture#计费引擎状态机) |
 | 双控制台 | 管理后台 + 租户控制台 | [管理后台](/guide/admin/) · [租户控制台](/guide/tenant/) |
 | 全链路可观测 | 请求日志 / 操作审计 / 监控告警 | [排障指南](/troubleshooting/) |
 
@@ -107,7 +107,7 @@ curl https://your-domain/v1/chat/completions \
 | 项目预算 | 单个项目 | 项目成本核算 |
 | Key 额度 | 单把 Key | 应用 / 环境级限额 |
 
-一次请求逐层校验，任一层不足即拒绝并返回明确错误码，额度管控规则详见[五层额度模型](/guide/quota)。
+一次请求逐层校验，任一层不足即拒绝并返回明确错误码。
 
 ## 实时计费引擎
 
@@ -118,7 +118,7 @@ curl https://your-domain/v1/chat/completions \
 - **结算**：拿到上游真实 usage 后按模型倍率计价；
 - **退款**：预扣与结算差额即时退回。
 
-并发安全由 **Redis 原子操作**保证，高并发场景下不会出现额度超扣或资金错账。计费规则与对账详见[计费与对账](/guide/billing)。
+并发安全由 **Redis 原子操作**保证，高并发场景下不会出现额度超扣或资金错账。
 
 ## 双控制台
 

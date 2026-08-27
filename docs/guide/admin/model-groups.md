@@ -79,4 +79,3 @@ flowchart LR
 
 - [模型配置](/guide/admin/models) —— 分组内的模型来自平台模型目录
 - [渠道配置](/guide/admin/channels) —— 授权之后，由渠道实际承接请求
-- [计费与对账](/guide/billing) —— 基准价、折扣与自定义价的结算规则

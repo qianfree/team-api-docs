@@ -84,6 +84,7 @@ const sidebar = {
         { text: '模型配置', link: '/guide/admin/models' },
         { text: '渠道配置', link: '/guide/admin/channels' },
         { text: '分组配置', link: '/guide/admin/model-groups' },
+        { text: '租户管理', link: '/guide/admin/tenants' },
       ],
     },
     {
@@ -95,13 +96,6 @@ const sidebar = {
         { text: '项目管理', link: '/guide/tenant/projects' },
         { text: '请求审计日志', link: '/guide/tenant/request-audit-logs' },
         { text: '在线体验', link: '/guide/tenant/playground' },
-      ],
-    },
-    {
-      text: '核心概念',
-      items: [
-        { text: '五层额度模型', link: '/guide/quota' },
-        { text: '计费与对账', link: '/guide/billing' },
       ],
     },
   ],
@@ -159,6 +153,9 @@ export default withMermaid(
     },
   },
   head: [
+    ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon.png' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Team-API 文档' }],
     [
