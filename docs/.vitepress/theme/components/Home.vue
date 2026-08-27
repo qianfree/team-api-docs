@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import HomeTerminal from './HomeTerminal.vue'
-import BrowserFrame from './BrowserFrame.vue'
-
 const stats = [
-  { num: '25+', label: '大模型供应商统一接入' },
-  { num: '5', label: '层额度精细管控' },
-  { num: '2', label: '套独立运营控制台' },
-  { num: '1', label: '个 OpenAI 兼容入口' },
+  { num: '25+', label: '家大模型，全都接好了' },
+  { num: '5', label: '层额度管控，花超自动停' },
+  { num: '2', label: '套后台，平台和客户各用各的' },
+  { num: '1', label: '个 Key，所有模型通用' },
 ]
 
 const showcases: {
@@ -14,82 +11,92 @@ const showcases: {
   title: string
   desc: string
   points: string[]
-  visual: 'terminal' | 'monitor' | 'request-log' | 'playground'
+  img: string
+  alt: string
 }[] = [
   {
-    tag: '接口兼容',
-    title: 'OpenAI 兼容，即刻迁移',
-    desc: '对外暴露 OpenAI 兼容接口，现有应用替换 base_url 与 api_key 即可无缝迁移。',
+    tag: '统一接入',
+    title: '一个 Key，用遍所有大模型',
+    desc: '不用挨家注册、挨家充值。25+ 家大模型都接在一个入口后面，代码里只留一个地址、一个 Key。',
     points: [
-      '/v1/chat/completions 等标准路径',
-      '流式 SSE 与 WebSocket 实时通信',
-      '对话 / 嵌入 / 图像 / 语音全覆盖',
+      '兼容 OpenAI 接口格式，老代码改个地址就能迁过来',
+      'Claude、Gemini 等原生格式也支持直连',
+      '渠道变慢或出故障自动换一家，调用方无感知',
     ],
-    visual: 'terminal',
+    img: '/material/一个key调用所有模型.jpg',
+    alt: '一把钥匙连接所有大模型的示意图',
   },
   {
-    tag: '智能调度',
-    title: '渠道调度与故障转移',
-    desc: '按优先级与权重分发流量，上游异常自动切换到可用渠道，健康状态实时监控，业务零感知。',
+    tag: '团队管理',
+    title: '谁能用什么、能花多少，你说了算',
+    desc: '给每个成员发自己的 Key，配各自的额度。额度花完自动停，调高预算自动恢复，不用人工封号解号。',
     points: [
-      '优先级 / 权重路由',
-      '自动故障转移',
-      '渠道健康监控与告警',
-      '会话级渠道亲和',
+      '老板、管理员、成员三种身份，各自看到的不一样',
+      '成员、项目、Key 都能单独限额，花超自动停',
+      '可以限制某个 Key 只能用便宜模型，成本管得住',
     ],
-    visual: 'monitor',
+    img: '/material/三层权限管理.jpg',
+    alt: '成员、应用、密钥三层权限管理的示意图',
   },
   {
-    tag: '全链路可观测',
-    title: '每一次调用都有迹可循',
-    desc: '请求日志、操作审计、监控告警三位一体，Request ID 贯穿「客户端 → 网关 → 上游」全链路。',
+    tag: '双端架构',
+    title: '两套后台：你管平台，客户管自己',
+    desc: '你在自己的后台管渠道和定价，客户在他们的后台管成员和账单。两套账号互不相通，数据完全隔离。',
     points: [
-      '全量请求日志，多维筛选',
-      'Request ID 全链路追踪',
-      '用量统计与成本核算',
+      '平台后台：管渠道、模型、定价、订单、监控',
+      '客户后台：管自己的成员、Key、账单、套餐',
+      '账号体系完全独立，客户看不到你的渠道和成本',
     ],
-    visual: 'request-log',
+    img: '/material/双端界面.jpg',
+    alt: '管理端与租户端两套系统并存的示意图',
   },
   {
-    tag: '多租户',
-    title: '给团队一个独立控制台',
-    desc: '每个租户拥有独立的团队、成员、项目与 Key 管理体系，行级数据隔离；在线 Playground 开箱即用。',
+    tag: '异步生图',
+    title: '画图不用干等几十秒',
+    desc: '提交画图任务立刻拿到一个任务号，先去干别的，回头拿任务号取图就行。失败自动换渠道重试，队列满了直接退钱。',
     points: [
-      '团队协作与角色权限',
-      '项目预算与 Key 额度',
-      '在线对话 / 图像 Playground',
+      '提交即返回任务号，不用挂着连接傻等',
+      '生成失败自动换渠道重试，尽量让你拿到图',
+      '服务重启时没完成的任务自动退款，不白花钱',
     ],
-    visual: 'playground',
+    img: '/material/图片生成同步转异步.jpg',
+    alt: '图片生成从同步等待改为异步取图的示意图',
+  },
+  {
+    tag: '日志排障',
+    title: '出了问题，一查到底',
+    desc: '每次调用从进来到出去，每一步都有记录：发给了哪家、来回说了什么、花了多久。对话内容默认打码保存，隐私不外泄。',
+    points: [
+      '一次请求的完整来回，每一步报文都能看',
+      '手机号、身份证、密钥等敏感信息自动打码',
+      '平台和客户各记一份，客户自己定记录的详细程度',
+    ],
+    img: '/material/监控-渠道完整追踪链路.jpg',
+    alt: '一次请求在渠道间完整追踪链路的示意图',
+  },
+  {
+    tag: '实时监控',
+    title: '系统跑成什么样，一眼看清',
+    desc: '多少人在用、流量走了哪家、成功率高不高，打开监控页一眼看完。渠道出问题自动告警，修好了自动恢复。',
+    points: [
+      '实时看到并发、流量、成功率、延迟',
+      '「这次请求为什么走了这家渠道」有答案，不用猜',
+      '渠道故障自动告警、自动隔离，恢复后自动拉回',
+    ],
+    img: '/material/监控-全链路可视化.jpg',
+    alt: '全链路监控数据可视化的示意图',
   },
 ]
 
-const visuals = {
-  monitor: {
-    src: '/images/admin_channel_monitor.png',
-    url: 'https://team-api.net/admin/',
-    alt: 'Team-API 管理后台 — 渠道监控',
-  },
-  'request-log': {
-    src: '/images/admin_request_log.png',
-    url: 'https://team-api.net/admin/',
-    alt: 'Team-API 管理后台 — 请求日志',
-  },
-  playground: {
-    src: '/images/tenant_playground_chat.png',
-    url: 'https://team-api.net',
-    alt: 'Team-API 租户控制台 — 在线对话 Playground',
-  },
-} as const
-
 const moreFeatures = [
-  { title: '多租户架构', desc: '行级隔离，双独立用户体系' },
-  { title: '25+ 供应商', desc: 'OpenAI / Claude / Gemini / DeepSeek / 通义 / 智谱…' },
-  { title: '五层额度模型', desc: '钱包 → 套餐 → 成员 → 项目 → Key' },
-  { title: '实时计费引擎', desc: '预扣 → 结算 → 退款，并发安全' },
-  { title: '监控告警', desc: '渠道健康与业务指标告警' },
-  { title: '操作审计', desc: '全部管理操作留痕可查' },
-  { title: '插件系统', desc: '可扩展的插件机制' },
-  { title: '在线更新', desc: '版本升级不停服' },
+  { title: 'OpenAI 兼容接口', desc: '改个地址和 Key 就能迁移' },
+  { title: '多家格式直连', desc: 'Claude、Gemini 原生格式也支持' },
+  { title: '实时计费', desc: '先扣后结、多退少补，不出错账' },
+  { title: '流式输出', desc: '边生成边显示，不用等全文' },
+  { title: '内容过滤', desc: '敏感词和违规内容可拦截' },
+  { title: '第三方登录', desc: '支持 GitHub 等 OAuth 登录' },
+  { title: '插件系统', desc: '缺什么功能，装个插件补上' },
+  { title: '在线更新', desc: '升级版本不用停机' },
 ]
 </script>
 
@@ -100,8 +107,8 @@ const moreFeatures = [
       <span class="badge">v0.2 已发布 · AGPL-3.0 开源</span>
       <h1 class="title">多租户大模型<br /><span class="title-accent">API 网关</span></h1>
       <p class="tagline">
-        统一接入 OpenAI、Claude、Gemini 等 25+ 大模型供应商，<br class="br-md" />
-        计费、限流、监控与多租户管理，一站具备。
+        OpenAI、Claude、Gemini……25+ 家大模型，接到一个入口里，<br class="br-md" />
+        给团队每人发一个 Key——能用什么、能花多少，都由你管。
       </p>
       <div class="actions">
         <a class="btn btn-primary" href="/deploy/docker-compose">快速开始</a>
@@ -124,12 +131,18 @@ const moreFeatures = [
       </div>
     </section>
 
+    <!-- 核心能力标题 -->
+    <section class="core-head">
+      <h2 class="section-title">它能帮你做什么</h2>
+      <p class="section-sub">从接入、管钱到排障，六件事一次说清楚</p>
+    </section>
+
     <!-- 功能展示：左文右图交替 -->
     <section
       v-for="(s, i) in showcases"
       :key="s.title"
       class="showcase"
-      :class="{ reverse: i % 2 === 1, 'showcase-divider': i > 0 }"
+      :class="{ reverse: i % 2 === 1, 'showcase-divider': i > 0, 'showcase-first': i === 0 }"
     >
       <div class="showcase-text">
         <span class="row-tag">{{ s.tag }}</span>
@@ -140,13 +153,9 @@ const moreFeatures = [
         </ul>
       </div>
       <div class="showcase-visual">
-        <HomeTerminal v-if="s.visual === 'terminal'" />
-        <BrowserFrame
-          v-else
-          :src="visuals[s.visual].src"
-          :url="visuals[s.visual].url"
-          :alt="visuals[s.visual].alt"
-        />
+        <figure class="shot">
+          <img :src="s.img" :alt="s.alt" loading="lazy" decoding="async" />
+        </figure>
       </div>
     </section>
 
@@ -212,7 +221,7 @@ const moreFeatures = [
 
 .tagline {
   margin: 20px auto 0;
-  max-width: 620px;
+  max-width: 640px;
   font-size: 17px;
   line-height: 1.8;
   color: var(--vp-c-text-2);
@@ -292,6 +301,20 @@ const moreFeatures = [
   color: var(--vp-c-text-2);
 }
 
+/* ---------- 核心能力标题 ---------- */
+.core-head {
+  padding: 84px 0 0;
+  text-align: center;
+}
+
+.section-sub {
+  margin: 12px auto 0;
+  max-width: 560px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
 /* ---------- 功能展示行 ---------- */
 .showcase {
   display: grid;
@@ -299,6 +322,10 @@ const moreFeatures = [
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
   padding: 80px 0;
+}
+
+.showcase-first {
+  padding-top: 44px;
 }
 
 .showcase-divider {
@@ -360,6 +387,21 @@ const moreFeatures = [
 
 .showcase-visual {
   filter: drop-shadow(0 16px 32px rgba(15, 23, 42, 0.1));
+}
+
+/* ---------- 展示图 ---------- */
+.shot {
+  margin: 0;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--vp-c-bg-alt);
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ---------- 通用标题 ---------- */
@@ -425,6 +467,9 @@ const moreFeatures = [
     grid-template-columns: 1fr;
     gap: 36px;
     padding: 64px 0;
+  }
+  .showcase-first {
+    padding-top: 36px;
   }
   .showcase.reverse .showcase-text {
     order: 1;

@@ -3,6 +3,8 @@ defineProps<{
   src: string
   url: string
   alt?: string
+  /** 可选：定高裁剪预览（顶部对齐），如 "200px" */
+  imgHeight?: string
 }>()
 </script>
 
@@ -20,7 +22,12 @@ defineProps<{
         {{ url }}
       </span>
     </div>
-    <img :src="src" :alt="alt ?? url" loading="lazy" />
+    <img
+      :src="src"
+      :alt="alt ?? url"
+      loading="lazy"
+      :style="imgHeight ? { height: imgHeight, objectFit: 'cover', objectPosition: 'top' } : undefined"
+    />
   </div>
 </template>
 
