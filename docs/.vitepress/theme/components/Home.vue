@@ -89,114 +89,281 @@ const showcases: {
 ]
 
 const moreFeatures = [
-  { title: 'OpenAI 兼容接口', desc: '改个地址和 Key 就能迁移' },
-  { title: '多家格式直连', desc: 'Claude、Gemini 原生格式也支持' },
-  { title: '实时计费', desc: '先扣后结、多退少补，不出错账' },
-  { title: '流式输出', desc: '边生成边显示，不用等全文' },
-  { title: '内容过滤', desc: '敏感词和违规内容可拦截' },
-  { title: '第三方登录', desc: '支持 GitHub 等 OAuth 登录' },
-  { title: '插件系统', desc: '缺什么功能，装个插件补上' },
-  { title: '在线更新', desc: '升级版本不用停机' },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12m0 0-3-3m3 3-3 3"/><path d="M20 16H8m0 0 3-3m-3 3 3 3"/></svg>',
+    title: 'OpenAI 兼容接口',
+    desc: '改个地址和 Key 就能迁移',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l2.92-2.92a5 5 0 0 0-7.07-7.07L11.75 5.2"/><path d="M14 11a5 5 0 0 0-7.54-.54L3.54 13.4a5 5 0 0 0 7.07 7.07l1.64-1.65"/></svg>',
+    title: '多家格式直连',
+    desc: 'Claude、Gemini 原生格式也支持',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 9.5 12 13l3-3.5M12 13v4.5M9.5 14.5h5"/></svg>',
+    title: '实时计费',
+    desc: '先扣后结、多退少补，不出错账',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.6 13.2h6L9.4 22l8.5-11.2h-6L13 2z"/></svg>',
+    title: '流式输出',
+    desc: '边生成边显示，不用等全文',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.8v5.4c0 4.4-3 7.3-7 8.8-4-1.5-7-4.4-7-8.8V5.8L12 3z"/><path d="m9 11.6 2.1 2.1L15.4 9.4"/></svg>',
+    title: '内容过滤',
+    desc: '敏感词和违规内容可拦截',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3.5 19.5c.6-3.6 2.6-5.2 5.5-5.2s4.9 1.6 5.5 5.2"/><path d="M18 5.5v6M15 8.5h6"/></svg>',
+    title: '第三方登录',
+    desc: '支持 GitHub 等 OAuth 登录',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12 4 7.5"/></svg>',
+    title: '插件系统',
+    desc: '缺什么功能，装个插件补上',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>',
+    title: '在线更新',
+    desc: '升级版本不用停机',
+  },
 ]
 </script>
 
 <template>
   <div class="home">
-    <!-- Hero -->
+    <!-- 沉浸式 Hero：全屏背景 + 左侧大文字 + 右侧若隐若现的艺术图 -->
     <section class="hero">
-      <span class="badge">v0.2 已发布 · AGPL-3.0 开源</span>
-      <h1 class="title">多租户大模型<br /><span class="title-accent">API 网关</span></h1>
-      <p class="tagline">
-        OpenAI、Claude、Gemini……25+ 家大模型，接到一个入口里，<br class="br-md" />
-        给团队每人发一个 Key——能用什么、能花多少，都由你管。
-      </p>
-      <div class="actions">
-        <a class="btn btn-primary" href="/deploy/docker-compose">快速开始</a>
-        <a
-          class="btn btn-ghost"
-          href="https://team-api.net"
-          target="_blank"
-          rel="noopener noreferrer"
-        >在线演示 ↗</a>
+      <div class="hero-bg" aria-hidden="true">
+        <div class="g-grid"></div>
+        <div class="g-glow g-glow-a"></div>
+        <div class="g-glow g-glow-b"></div>
+        <img
+          class="g-art"
+          src="/material/一个key调用所有模型.jpg"
+          alt=""
+          loading="eager"
+          decoding="async"
+        />
+        <div class="g-seat"></div>
       </div>
-    </section>
 
-    <!-- 数据指标带 -->
-    <section class="stats">
-      <div class="stats-grid">
-        <div v-for="s in stats" :key="s.label" class="stat">
-          <div class="stat-num">{{ s.num }}</div>
-          <div class="stat-label">{{ s.label }}</div>
+      <div class="hero-inner">
+        <span class="badge rise">
+          <span class="badge-dot"></span>
+          v0.2 已发布 · AGPL-3.0 开源
+        </span>
+        <h1 class="title rise d1">
+          多租户大模型<br /><span class="title-accent">API 网关</span>
+        </h1>
+        <p class="tagline rise d2">
+          OpenAI、Claude、Gemini……25+ 家大模型，接到一个入口里。<br class="br-md" />
+          给团队每人发一个 Key——能用什么、能花多少，都由你管。
+        </p>
+        <div class="actions rise d3">
+          <a class="btn btn-primary" href="/deploy/docker-compose">快速开始</a>
+          <a
+            class="btn btn-ghost"
+            href="https://team-api.net"
+            target="_blank"
+            rel="noopener noreferrer"
+          >在线演示 ↗</a>
         </div>
       </div>
     </section>
 
-    <!-- 核心能力标题 -->
-    <section class="core-head">
-      <h2 class="section-title">它能帮你做什么</h2>
-      <p class="section-sub">从接入、管钱到排障，六件事一次说清楚</p>
-    </section>
-
-    <!-- 功能展示：左文右图交替 -->
-    <section
-      v-for="(s, i) in showcases"
-      :key="s.title"
-      class="showcase"
-      :class="{ reverse: i % 2 === 1, 'showcase-divider': i > 0, 'showcase-first': i === 0 }"
-    >
-      <div class="showcase-text">
-        <span class="row-tag">{{ s.tag }}</span>
-        <h2 class="row-title">{{ s.title }}</h2>
-        <p class="row-desc">{{ s.desc }}</p>
-        <ul class="row-points">
-          <li v-for="p in s.points" :key="p">{{ p }}</li>
-        </ul>
-      </div>
-      <div class="showcase-visual">
-        <figure class="shot">
-          <img :src="s.img" :alt="s.alt" loading="lazy" decoding="async" />
-        </figure>
-      </div>
-    </section>
-
-    <!-- 更多能力 -->
-    <section class="more">
-      <h2 class="section-title">更多开箱能力</h2>
-      <div class="more-grid">
-        <div v-for="f in moreFeatures" :key="f.title" class="more-item">
-          <span class="check">✓</span>
-          <div>
-            <div class="more-title">{{ f.title }}</div>
-            <div class="more-desc">{{ f.desc }}</div>
+    <div class="shell">
+      <!-- 数据指标带 -->
+      <section class="stats">
+        <div class="stats-grid">
+          <div v-for="s in stats" :key="s.label" class="stat">
+            <div class="stat-num">{{ s.num }}</div>
+            <div class="stat-label">{{ s.label }}</div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- 核心能力标题 -->
+      <section class="core-head">
+        <h2 class="section-title">它能帮你做什么</h2>
+        <p class="section-sub">从接入、管钱到排障，六件事一次说清楚</p>
+      </section>
+
+      <!-- 功能展示：左文右图交替 -->
+      <section
+        v-for="(s, i) in showcases"
+        :key="s.title"
+        class="showcase"
+        :class="{ reverse: i % 2 === 1, 'showcase-divider': i > 0, 'showcase-first': i === 0 }"
+      >
+        <div class="showcase-text">
+          <span class="row-tag">{{ i < 9 ? '0' : '' }}{{ i + 1 }} · {{ s.tag }}</span>
+          <h2 class="row-title">{{ s.title }}</h2>
+          <p class="row-desc">{{ s.desc }}</p>
+          <ul class="row-points">
+            <li v-for="p in s.points" :key="p">{{ p }}</li>
+          </ul>
+        </div>
+        <div class="showcase-visual">
+          <figure class="shot">
+            <img :src="s.img" :alt="s.alt" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- 更多能力 -->
+      <section class="more">
+        <h2 class="section-title">更多开箱能力</h2>
+        <div class="more-grid">
+          <div v-for="f in moreFeatures" :key="f.title" class="more-item">
+            <span class="icon-chip" v-html="f.icon"></span>
+            <div>
+              <div class="more-title">{{ f.title }}</div>
+              <div class="more-desc">{{ f.desc }}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 收尾 CTA -->
+      <section class="endcta">
+        <h2 class="endcta-title">把 25+ 家大模型，一次接进来</h2>
+        <p class="endcta-sub">Docker Compose 五分钟部署 · AGPL-3.0 开源 · 数据全程在你自己的服务器上</p>
+        <div class="actions">
+          <a class="btn btn-invert" href="/deploy/docker-compose">快速开始</a>
+          <a
+            class="btn btn-outline-light"
+            href="https://github.com/qianfree/team-api"
+            target="_blank"
+            rel="noopener noreferrer"
+          >GitHub ↗</a>
+        </div>
+      </section>
+    </div>
 
   </div>
 </template>
 
 <style scoped>
 .home {
-  /* 与顶部导航栏容器对齐：VPNavBar 同为 calc(--vp-layout-max-width - 64px) 居中 */
+  /* Hero 需要通到视口边缘，容器职责下放给各区块（.shell） */
+}
+
+.shell {
   max-width: 1376px;
   margin: 0 auto;
   padding: 0 32px;
 }
 
-/* ---------- Hero ---------- */
+/* ================== 沉浸式 Hero ================== */
 .hero {
-  text-align: center;
-  padding: 80px 0 64px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* 视口高度减去导航栏；窄屏内容更高时自然撑开 */
+  min-height: calc(100vh - var(--vp-nav-height));
+  min-height: calc(100svh - var(--vp-nav-height));
+  overflow: hidden;
+}
+
+/* 背景层栈：网格 → 光晕 → 艺术图 → 底部渐隐 */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.g-grid,
+.g-glow,
+.g-art,
+.g-seat {
+  position: absolute;
+}
+
+/* 网格纹理：自左上角向四周渐隐 */
+.g-grid {
+  inset: 0;
+  background-image:
+    linear-gradient(var(--ta-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ta-grid) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: radial-gradient(80% 90% at 22% 8%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(80% 90% at 22% 8%, #000 25%, transparent 78%);
+}
+
+/* 主光晕：贴着艺术图后方，让深色图与浅色页面的过渡融进青绿雾气里 */
+.g-glow-a {
+  top: -26%;
+  right: -14%;
+  width: min(1280px, 92vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
   background: radial-gradient(
-    56% 44% at 50% 0%,
-    color-mix(in srgb, var(--vp-c-brand-1) 7%, transparent),
-    transparent 72%
+    closest-side,
+    rgba(45, 212, 191, var(--ta-halo-a)) 8%,
+    rgba(45, 212, 191, 0) 76%
   );
 }
 
+/* 副光晕：左上冷色点缀，平衡画面 */
+.g-glow-b {
+  top: -24%;
+  left: -16%;
+  width: 720px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(56, 189, 248, var(--ta-halo-b)),
+    rgba(56, 189, 248, 0) 70%
+  );
+}
+
+/* 艺术图：右侧大面积羽化，若隐若现地浮出背景 */
+.g-art {
+  top: 50%;
+  right: -4%;
+  transform: translateY(-50%);
+  width: min(58vw, 1020px);
+  opacity: var(--ta-art-opacity);
+  object-fit: cover;
+  /* 羽化足够宽，避免出现可辨识的遮罩轮廓（“聚光灯”感） */
+  -webkit-mask-image: radial-gradient(62% 62% at 50% 46%, #000 18%, transparent 70%);
+  mask-image: radial-gradient(62% 62% at 50% 46%, #000 18%, transparent 70%);
+  animation: artIn 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: 0.25s;
+}
+
+@keyframes artIn {
+  from { opacity: 0; transform: translateY(-50%) scale(1.05); }
+}
+
+/* 底部渐隐：让首屏无缝沉入页面底色 */
+.g-seat {
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 170px;
+  background: linear-gradient(to top, var(--vp-c-bg) 8%, transparent);
+}
+
+/* ---------- 文案列 ---------- */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1376px;
+  margin: 0 auto;
+  padding: 110px 32px 96px;
+  text-align: left;
+}
+
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 5px 14px;
   font-size: 13px;
   font-weight: 500;
@@ -204,44 +371,71 @@ const moreFeatures = [
   background: color-mix(in srgb, var(--vp-c-brand-1) 7%, transparent);
   border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 22%, transparent);
   border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+.badge-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-3);
+  position: relative;
+}
+
+.badge-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--vp-c-brand-3);
+  opacity: 0;
+  animation: ping 2.2s ease-out infinite;
+}
+
+@keyframes ping {
+  0% { transform: scale(0.5); opacity: 0.7; }
+  70%, 100% { transform: scale(1.3); opacity: 0; }
 }
 
 .title {
-  margin: 22px 0 0;
-  font-size: clamp(36px, 6.5vw, 58px);
+  margin: 26px 0 0;
+  font-size: clamp(44px, 5.4vw, 74px);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
   color: var(--vp-c-text-1);
 }
 
 .title-accent {
-  color: var(--vp-c-brand-1);
+  background: linear-gradient(135deg, var(--vp-c-brand-3), var(--ta-accent-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .tagline {
-  margin: 20px auto 0;
-  max-width: 640px;
+  margin: 24px 0 0;
+  max-width: 520px;
   font-size: 17px;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--vp-c-text-2);
 }
 
 .actions {
-  margin-top: 32px;
+  margin-top: 36px;
   display: flex;
-  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
 }
 
-/* ---------- 按钮（对齐主项目 .btn-primary 渐变 + 发光阴影） ---------- */
+/* ---------- 按钮 ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 44px;
-  padding: 0 24px;
+  height: 46px;
+  padding: 0 26px;
   border-radius: 12px;
   font-size: 15px;
   font-weight: 500;
@@ -264,10 +458,56 @@ const moreFeatures = [
 .btn-ghost {
   border: 1px solid var(--vp-c-border);
   color: var(--vp-c-text-1);
+  background: color-mix(in srgb, var(--vp-c-bg) 72%, transparent);
+  backdrop-filter: blur(6px);
 }
 .btn-ghost:hover {
   border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
+}
+
+.btn-invert {
+  background: #fff;
+  color: #0f172a;
+  box-shadow: 0 4px 16px rgba(2, 6, 23, 0.35);
+}
+.btn-invert:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.45);
+}
+
+.btn-outline-light {
+  border: 1px solid rgba(240, 253, 250, 0.32);
+  color: #f0fdfa;
+}
+.btn-outline-light:hover {
+  border-color: rgba(240, 253, 250, 0.65);
+  background: rgba(240, 253, 250, 0.08);
+}
+
+.endcta .btn-invert {
+  border: none;
+}
+
+/* ---------- 入场动画 ---------- */
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.d1 { animation-delay: 0.08s; }
+.d2 { animation-delay: 0.16s; }
+.d3 { animation-delay: 0.24s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .badge-dot::after,
+  .g-art {
+    animation: none;
+  }
 }
 
 /* ---------- 指标带 ---------- */
@@ -292,7 +532,10 @@ const moreFeatures = [
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--vp-c-brand-1);
+  background: linear-gradient(180deg, var(--ta-stat-from), var(--ta-stat-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .stat-label {
@@ -344,10 +587,12 @@ const moreFeatures = [
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
   color: var(--vp-c-brand-1);
 }
 
 .row-title {
+  border: none;
   margin: 10px 0 0;
   font-size: clamp(22px, 3vw, 28px);
   font-weight: 600;
@@ -396,6 +641,15 @@ const moreFeatures = [
   border-radius: 16px;
   overflow: hidden;
   background: var(--vp-c-bg-alt);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 24px 48px -24px rgba(15, 23, 42, 0.22);
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.shot:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--vp-c-brand-1) 28%, transparent);
 }
 
 .shot img {
@@ -406,6 +660,7 @@ const moreFeatures = [
 
 /* ---------- 通用标题 ---------- */
 .section-title {
+  border: none;
   font-size: clamp(24px, 3.5vw, 32px);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -413,39 +668,55 @@ const moreFeatures = [
   color: var(--vp-c-text-1);
 }
 
-/* ---------- 更多能力 ---------- */
+/* ---------- 更多能力（卡片网格） ---------- */
 .more {
-  padding: 88px 0 96px;
+  padding: 88px 0 0;
   border-top: 1px solid var(--vp-c-border);
 }
 
 .more-grid {
   margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px 48px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-bottom: 88px;
 }
 
 .more-item {
   display: flex;
-  gap: 12px;
+  gap: 13px;
   align-items: flex-start;
-  padding: 12px 0;
+  padding: 18px 16px;
+  background: var(--vp-c-bg-alt);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 14px;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.check {
+.more-item:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--vp-c-brand-1) 30%, transparent);
+  box-shadow: 0 10px 24px -12px rgba(15, 23, 42, 0.14);
+}
+
+.icon-chip {
   flex: none;
-  width: 20px;
-  height: 20px;
-  margin-top: 1px;
+  width: 36px;
+  height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
   color: var(--vp-c-brand-1);
-  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 35%, transparent);
-  border-radius: 50%;
+  background: color-mix(in srgb, var(--vp-c-brand-1) 9%, transparent);
+  border-radius: 10px;
+}
+
+.icon-chip :deep(svg) {
+  width: 19px;
+  height: 19px;
 }
 
 .more-title {
@@ -455,14 +726,79 @@ const moreFeatures = [
 }
 
 .more-desc {
-  margin-top: 2px;
+  margin-top: 3px;
   font-size: 13px;
   line-height: 1.6;
   color: var(--vp-c-text-2);
 }
 
+/* ---------- 收尾 CTA ---------- */
+.endcta {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 104px;
+  padding: 80px 32px;
+  text-align: center;
+  border-radius: 26px;
+  background:
+    radial-gradient(480px 340px at 84% -60px, rgba(45, 212, 191, 0.26), rgba(45, 212, 191, 0) 68%),
+    radial-gradient(560px 400px at 6% calc(100% + 60px), rgba(56, 189, 248, 0.13), rgba(56, 189, 248, 0) 64%),
+    linear-gradient(165deg, #122c47, #0b1120);
+}
+
+.endcta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(240, 253, 250, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 253, 250, 0.05) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: radial-gradient(70% 90% at 50% 0%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(70% 90% at 50% 0%, #000 30%, transparent 80%);
+  pointer-events: none;
+}
+
+.endcta-title,
+.endcta-sub,
+.endcta .actions {
+  position: relative;
+}
+
+.endcta-title {
+  /* 关键：抵消 .vp-doc h2 的边框与内边距，否则深色面板上会浮出一条浅色线 */
+  border: none;
+  padding-top: 0;
+  margin: 0;
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f0fdfa;
+}
+
+.endcta-sub {
+  margin: 14px auto 0;
+  max-width: 560px;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: rgba(203, 213, 225, 0.85);
+}
+
 /* ---------- 响应式 ---------- */
+@media (max-width: 1150px) {
+  .more-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .g-art {
+    width: 62vw;
+    opacity: calc(var(--ta-art-opacity) * 0.85);
+  }
+}
+
 @media (max-width: 960px) {
+  .shell {
+    padding: 0 24px;
+  }
   .showcase {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -477,17 +813,50 @@ const moreFeatures = [
   .showcase.reverse .showcase-visual {
     order: 2;
   }
-  .more-grid {
-    grid-template-columns: 1fr;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    min-height: 0;
+    padding-top: 32px;
+  }
+  .hero-inner {
+    padding: 72px 24px 56px;
+    text-align: center;
+  }
+  .tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .actions {
+    justify-content: center;
+  }
+  .g-glow-b {
+    display: none;
+  }
+  /* 艺术图退为低透明度水印，核心区域推出文案行，只留边缘雾气 */
+  .g-art {
+    top: auto;
+    bottom: -14%;
+    right: -26%;
+    width: 124vw;
+    transform: none;
+    opacity: calc(var(--ta-art-opacity) * 0.24);
+    -webkit-mask-image: radial-gradient(48% 44% at 55% 52%, #000 16%, transparent 64%);
+    mask-image: radial-gradient(48% 44% at 55% 52%, #000 16%, transparent 64%);
+  }
+  /* 手机上加深底部渐隐，接住更靠近指标带的画面 */
+  .g-seat {
+    height: 220px;
+  }
+  @keyframes artIn {
+    from { opacity: 0; }
   }
 }
 
 @media (max-width: 640px) {
-  .home {
+  .shell {
     padding: 0 20px;
-  }
-  .hero {
-    padding: 56px 0 48px;
   }
   .br-md {
     display: none;
@@ -495,6 +864,16 @@ const moreFeatures = [
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 16px;
+  }
+  .endcta {
+    padding: 64px 24px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .more-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

@@ -41,6 +41,15 @@
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB',
     'Microsoft YaHei', sans-serif;
+
+  /* 首页专用：网格纹理 / 标题渐变深端 / 指标数字渐变 / Hero 光晕与艺术图透明度（浅色） */
+  --ta-grid: rgba(30, 41, 59, 0.055);
+  --ta-accent-deep: #0f766e;
+  --ta-stat-from: #14b8a6;
+  --ta-stat-to: #0f766e;
+  --ta-halo-a: 0.3;
+  --ta-halo-b: 0.09;
+  --ta-art-opacity: 0.74;
 }
 
 .dark {
@@ -63,6 +72,15 @@
 
   --vp-c-border: #1e293b;
   --vp-c-gutter: #1e293b;
+
+  /* 首页专用（深色） */
+  --ta-grid: rgba(148, 163, 184, 0.09);
+  --ta-accent-deep: #5eead4;
+  --ta-stat-from: #5eead4;
+  --ta-stat-to: #14b8a6;
+  --ta-halo-a: 0.34;
+  --ta-halo-b: 0.12;
+  --ta-art-opacity: 0.86;
 }
 
 /* ========== 选中文本（对齐主项目 --ta-selection-*） ========== */
@@ -92,14 +110,14 @@
   display: none;
 }
 
-@media (min-width: 960px) {
-  .VPDoc:not(.has-sidebar) .container:has(.home),
-  .VPDoc:not(.has-sidebar) .content:has(.home) {
-    max-width: none;
-  }
+/* 首页是全幅落地页（沉浸式 Hero 需要通到视口边缘），解除阅读列宽度限制，
+   所有断点生效；水平留白由组件内的 .shell 自己控制。文档页不受影响。 */
+.VPDoc:not(.has-sidebar) .container:has(.home),
+.VPDoc:not(.has-sidebar) .content:has(.home) {
+  max-width: none;
+}
 
-  .VPDoc:not(.has-sidebar) .content:has(.home) {
-    padding-left: 0;
-    padding-right: 0;
-  }
+.VPDoc:not(.has-sidebar) .content:has(.home) {
+  padding-left: 0;
+  padding-right: 0;
 }
