@@ -95,29 +95,34 @@
 }
 
 /**
- * 首页占满布局宽度，并消除导航栏下方的空白条。
+ * 首页 / 定价页占满布局宽度，并消除导航栏下方的空白条。
  * 默认主题将无侧边栏的文档页压缩到 752px 阅读列（.VPDoc:not(.has-sidebar) .content），
- * 且 .VPDoc 自带 48px 顶部内边距；首页是产品落地页，Hero 自带 80px 顶部留白，
+ * 且 .VPDoc 自带 48px 顶部内边距；这两页是产品落地页，Hero 自带顶部留白，
  * 解除这两处限制；文档页不受影响。
  */
-.VPDoc:not(.has-sidebar):has(.home) {
+.VPDoc:not(.has-sidebar):has(.home),
+.VPDoc:not(.has-sidebar):has(.pricing) {
   padding-top: 0;
 }
 
-/* 首页：VPDocFooter（更新时间 / 上下篇）对落地页无意义，
+/* 首页 / 定价页：VPDocFooter（更新时间 / 上下篇）对落地页无意义，
    且空 footer 仍带 64px margin-top 形成死空间，整体隐藏 */
-.VPDoc:has(.home) .VPDocFooter {
+.VPDoc:has(.home) .VPDocFooter,
+.VPDoc:has(.pricing) .VPDocFooter {
   display: none;
 }
 
-/* 首页是全幅落地页（沉浸式 Hero 需要通到视口边缘），解除阅读列宽度限制，
+/* 首页 / 定价页是全幅落地页（沉浸式 Hero 需要通到视口边缘），解除阅读列宽度限制，
    所有断点生效；水平留白由组件内的 .shell 自己控制。文档页不受影响。 */
 .VPDoc:not(.has-sidebar) .container:has(.home),
-.VPDoc:not(.has-sidebar) .content:has(.home) {
+.VPDoc:not(.has-sidebar) .content:has(.home),
+.VPDoc:not(.has-sidebar) .container:has(.pricing),
+.VPDoc:not(.has-sidebar) .content:has(.pricing) {
   max-width: none;
 }
 
-.VPDoc:not(.has-sidebar) .content:has(.home) {
+.VPDoc:not(.has-sidebar) .content:has(.home),
+.VPDoc:not(.has-sidebar) .content:has(.pricing) {
   padding-left: 0;
   padding-right: 0;
 }

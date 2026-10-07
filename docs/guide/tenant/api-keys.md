@@ -66,11 +66,11 @@ curl https://your-domain/v1/chat/completions \
 
 ## 额度与限流的生效顺序
 
-一次请求依次经过：**Key 额度 → QPS / 并发限制 → IP 白名单 → 组织级五层额度校验**。Key 层面的限制最先拦截——适合做应用级熔断；组织层面的钱包与套餐额度是最终兜底。
+一次请求依次经过：**Key 额度 → QPS / 并发限制 → IP 白名单 → 组织级三层额度校验**。Key 层面的限制最先拦截——适合做应用级熔断；组织层面的钱包额度是最终兜底。
 
 ## 相关文档
 
 - [项目管理](/guide/tenant/projects) —— 项目 Key 与项目预算
 - [在线体验](/guide/tenant/playground) —— 选择指定 Key 在线调试
-- [OpenAI 兼容接口](/api/openai-compatible) —— 调用协议
+- [API 概览](/api/overview) —— 调用协议
 - [排障指南](/troubleshooting/) —— 401 / 403 / 429 类问题排查

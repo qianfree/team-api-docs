@@ -11,7 +11,7 @@ title: 在线体验
 ![租户控制台 — 在线 Playground](/images/tenant_playground_chat.png)
 
 ::: tip 计费与正式调用
-Playground 使用真实的 API Key 走完整网关链路——正常计费、正常记录[用量日志](/guide/tenant/)与[请求审计日志](/guide/tenant/request-audit-logs)。它面向快速验证，各模型只暴露最常用的参数；正式接入应用请使用 [API 调用](/api/openai-compatible)。
+Playground 使用真实的 API Key 走完整网关链路——正常计费、正常记录[用量日志](/guide/tenant/)与[请求审计日志](/guide/tenant/request-audit-logs)。它面向快速验证，各模型只暴露最常用的参数；正式接入应用请使用 [API 文档](/api/overview)。
 :::
 
 ## 开始之前
@@ -53,5 +53,5 @@ Playground 使用真实的 API Key 走完整网关链路——正常计费、正
 ## 相关文档
 
 - [API Key 管理](/guide/tenant/api-keys) —— Key 的模型范围与限额
-- [OpenAI 兼容接口](/api/openai-compatible) · [图像](/api/openai-compatible) · [Responses API](/api/responses) —— 正式接入的调用协议
+- [对话补全](/api/chat-completions) · [图像生成](/api/images) · [视频生成](/api/video-generations) · [Responses API](/api/responses) —— 正式接入的调用协议
 - [请求审计日志](/guide/tenant/request-audit-logs) —— 回查 Playground 产生的调用

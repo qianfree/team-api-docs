@@ -4,7 +4,7 @@ title: Responses API
 
 # Responses API
 
-Team-API 支持OpenAI 新版 **Responses API**（`/v1/responses`），与传统的[对话补全接口](/api/openai-compatible#对话补全)相互独立：
+Team-API 支持OpenAI 新版 **Responses API**（`/v1/responses`），与传统的[对话补全接口](/api/chat-completions)相互独立：
 
 - **有状态** —— 通过 `previous_response_id` 串联多轮对话，服务端维护上下文，客户端无需回传全量历史；
 - **面向智能体** —— 内置工具（网页搜索、文件搜索等，视渠道能力）、推理模型参数、结构化事件流，是 OpenAI Agents SDK / Codex CLI 等新一代客户端的默认接口；
@@ -240,4 +240,4 @@ for event in stream:
 | 后台模式 | 无 | `background` 异步 + 轮询 |
 | 适用场景 | 存量应用、简单对话 | 智能体、多轮工具调用、Codex / Agents SDK |
 
-两者共用同一套 Key、额度与计费规则。对话补全接口见 [OpenAI 兼容接口](/api/openai-compatible)。
+两者共用同一套 Key、额度与计费规则。对话补全接口见[对话补全](/api/chat-completions)。

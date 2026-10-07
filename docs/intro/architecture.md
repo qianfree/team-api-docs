@@ -19,12 +19,12 @@ Team-API 的架构围绕五个目标展开：
 ```mermaid
 flowchart LR
     Client["客户端 / 应用<br/>OpenAI SDK · curl · WebSocket"] -->|"OpenAI 兼容 API"| GW
-    Admin["管理后台<br/>Vue 3 + Naive UI"] --> GW
+    Admin["管理后台<br/>Vue 3 + Arco Design"] --> GW
     Tenant["租户控制台<br/>Vue 3 + TailwindCSS"] --> GW
 
     subgraph GW ["Team-API 网关 · Go + GoFrame v2"]
         direction LR
-        In["接入与鉴权"] --> Q["五层额度校验与预扣"]
+        In["接入与鉴权"] --> Q["三层额度校验与预扣"]
         Q --> S["智能渠道调度"]
         S --> F["协议转换与转发"]
         F --> B["结算与退款"]
@@ -48,7 +48,7 @@ flowchart LR
 |------|------|
 | 接入层 | OpenAI 兼容 API、双控制台管理 API、WebSocket 实时通信 |
 | 鉴权与身份 | Key 校验、JWT 会话、识别「租户 / 成员 / 项目 / Key」四级身份 |
-| 额度引擎 | 五层额度逐层校验、预扣与回补 |
+| 额度引擎 | 三层额度逐层校验、预扣与回补 |
 | 调度引擎 | 优先级 / 权重路由、渠道亲和、健康度筛选、故障转移 |
 | 代理转发 | 上游协议适配（OpenAI / Anthropic / Gemini 等）、流式回传、用量解析 |
 | 计费引擎 | 预扣 → 结算 → 退款四阶段、模型倍率定价 |
@@ -67,7 +67,7 @@ sequenceDiagram
 
     C->>G: POST /v1/chat/completions（携带 Key）
     G->>G: 鉴权，识别租户 / 成员 / 项目 / Key
-    G->>R: 五层额度校验 + 预扣估算额度
+    G->>R: 三层额度校验 + 预扣估算额度
     R-->>G: 预扣成功（不足则拒绝并返回明确错误码）
     G->>G: 渠道调度（优先级 / 权重 / 亲和 / 健康度）
     G->>U: 协议转换后转发请求
@@ -80,7 +80,7 @@ sequenceDiagram
 
 要点：
 
-- **额度先于转发** —— 请求在触达上游之前完成五层校验与预扣，欠费请求不会消耗上游成本；
+- **额度先于转发** —— 请求在触达上游之前完成三层校验与预扣，欠费请求不会消耗上游成本；
 - **失败即退款** —— 转发失败、超时、中断等异常场景都会触发退款，差额或全额退回；
 - **日志贯穿** —— 客户端响应头、网关请求日志、上游转发记录、计费流水使用同一个 Request ID 串联，排障时一处检索、全链路可见（见[排障指南](/troubleshooting/)）。
 
@@ -90,7 +90,7 @@ Team-API 采用**行级租户隔离**（而非一租户一库 / 一 Schema）：
 
 - 业务表均携带租户标识，所有查询在数据访问层注入租户作用域，跨租户访问在查询层面被阻断；
 - **双独立用户体系** —— 管理后台运营人员与租户控制台成员是两套独立的账号与认证体系，权限边界清晰；
-- 租户内部的成员、项目、Key 构成三级归属，配合五层额度模型实现「租户内再隔离」。
+- 租户内部的成员、项目、Key 构成三级归属，配合三层额度模型实现「租户内再隔离」。
 
 行级隔离在运营上最轻：一套库表支撑任意多租户，扩租户零迁移；适合 SaaS 场景下租户数量多、单租户数据量可控的负载形态。
 
@@ -122,7 +122,7 @@ stateDiagram-v2
     state "拒绝（返回明确错误码）" as reject
 
     [*] --> enter
-    enter --> hold: 五层额度校验通过
+    enter --> hold: 三层额度校验通过
     enter --> reject: 任一层额度不足
     hold --> forward
     forward --> settle: 拿到上游真实 usage
@@ -177,7 +177,7 @@ flowchart LR
 
 两个控制台均为独立 SPA：
 
-- **管理后台** —— Vue 3 + Vite + Naive UI + TailwindCSS；
+- **管理后台** —— Vue 3 + Vite + Arco Design Vue + TailwindCSS；
 - **租户控制台** —— Vue 3 + Vite + TailwindCSS。
 
 支持三种部署形态（详见[部署章节](/deploy/docker-compose)）：

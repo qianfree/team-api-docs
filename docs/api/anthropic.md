@@ -38,6 +38,7 @@ curl https://your-domain/v1/messages \
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | `POST` | `/v1/messages` | 创建消息（支持流式 SSE） |
+| `POST` | `/v1/messages/count_tokens` | 预估请求输入 Token 数（本地估算、免费） |
 
 ## 创建消息
 
@@ -110,6 +111,39 @@ data: {"type":"message_stop"}
 ```
 
 工具调用场景下会推送 `input_json_delta` 增量，流式结束时网关解析真实 usage 完成计费结算。
+
+## Token 计数
+
+```bash
+POST /v1/messages/count_tokens
+```
+
+预估一个 Claude Messages 请求的输入 Token 数，供客户端做上下文窗口管理：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `model` | string | ✅ | 模型名 |
+| `messages` | array | ✅ | 消息数组（与创建消息一致） |
+| `system` | string / array | — | 系统提示词 |
+| `tools` | array | — | 工具定义（计入估算） |
+
+```bash
+curl https://your-domain/v1/messages/count_tokens \
+  -H "x-api-key: sk-xxxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5",
+    "messages": [{"role": "user", "content": "Hello, Claude"}]
+  }'
+```
+
+```json
+{"input_tokens": 12}
+```
+
+::: info 本地估算
+平台不内置精确分词器，该端点采用**本地粗略估算**（按字符类别加权，图片等无法解码的内容按固定估值），不请求上游、不计费，返回值不保证与上游精确计数一致，仅供近似参考。
+:::
 
 ## 错误响应
 
@@ -200,6 +234,6 @@ with client.messages.stream(
 
 ## 与其他协议的关系
 
-- 同一把 Key 可同时调用 [OpenAI 兼容接口](/api/openai-compatible)、本接口与 [Gemini 接口](/api/gemini)；
+- 同一把 Key 可同时调用[对话补全](/api/chat-completions)、本接口与 [Gemini 接口](/api/gemini)；
 - `model` 名为平台对外模型名，经[管理后台 · 渠道配置](/guide/admin/channels)的模型映射解析到实际渠道 —— 用 Claude 协议调用，不要求上游一定是 Anthropic 渠道；
 - 用量、计费、限额、审计行为与 OpenAI 协议完全一致，均可在请求日志中按 Request ID 追踪。

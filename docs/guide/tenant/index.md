@@ -57,13 +57,13 @@ flowchart LR
     D --> E["⑤ 应用接入<br/>Base URL + API Key"]
 ```
 
-应用接入只需两个参数：页面顶部展示的 **Base URL**（`https://你的域名/v1`）与 **API Key**，接口协议见 [OpenAI 兼容接口](/api/openai-compatible)。
+应用接入只需两个参数：页面顶部展示的 **Base URL**（`https://你的域名/v1`）与 **API Key**，接口协议见 [API 概览](/api/overview)。
 
 ::: tip 计费说明
-在线体验与 API 调用走同一条计费链路：请求先经五层额度校验（租户钱包 → 套餐 → 成员 → 项目 → Key），任一层不足即拒绝。给成员设好[额度限制](/guide/tenant/team#额度限制)是控制成本的主要手段。
+在线体验与 API 调用走同一条计费链路：请求先经三层额度校验（租户钱包 → 项目预算 / 成员额度 → Key），任一层不足即拒绝。给成员设好[额度限制](/guide/tenant/team#额度限制)是控制成本的主要手段。
 :::
 
 ## 相关文档
 
-- [API 参考](/api/openai-compatible) —— 调用协议与参数
+- [API 概览](/api/overview) —— 调用协议与参数
 - [排障指南](/troubleshooting/) —— 用 Request ID 追查一次调用

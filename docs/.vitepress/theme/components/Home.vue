@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const stats = [
-  { num: '25+', label: '家大模型，全都接好了' },
-  { num: '5', label: '层额度管控，花超自动停' },
+  { num: '4', label: '种模态，文本图像语音视频' },
+  { num: '3', label: '层额度管控，花超自动停' },
   { num: '2', label: '套后台，平台和客户各用各的' },
   { num: '1', label: '个 Key，所有模型通用' },
 ]
@@ -17,7 +17,7 @@ const showcases: {
   {
     tag: '统一接入',
     title: '一个 Key，用遍所有大模型',
-    desc: '不用挨家注册、挨家充值。25+ 家大模型都接在一个入口后面，代码里只留一个地址、一个 Key。',
+    desc: '不用挨家注册、挨家充值。各家大模型都接在一个入口后面，代码里只留一个地址、一个 Key。',
     points: [
       '兼容 OpenAI 接口格式，老代码改个地址就能迁过来',
       'Claude、Gemini 等原生格式也支持直连',
@@ -159,7 +159,7 @@ const moreFeatures = [
           多租户大模型<br /><span class="title-accent">API 网关</span>
         </h1>
         <p class="tagline rise d2">
-          OpenAI、Claude、Gemini……25+ 家大模型，接到一个入口里。<br class="br-md" />
+          OpenAI、Claude、Gemini……各家大模型，接到一个入口里。<br class="br-md" />
           给团队每人发一个 Key——能用什么、能花多少，都由你管。
         </p>
         <div class="actions rise d3">
@@ -229,7 +229,7 @@ const moreFeatures = [
 
       <!-- 收尾 CTA -->
       <section class="endcta">
-        <h2 class="endcta-title">把 25+ 家大模型，一次接进来</h2>
+        <h2 class="endcta-title">把各家大模型，一次接进来</h2>
         <p class="endcta-sub">Docker Compose 五分钟部署 · AGPL-3.0 开源 · 数据全程在你自己的服务器上</p>
         <div class="actions">
           <a class="btn btn-invert" href="/deploy/docker-compose">快速开始</a>

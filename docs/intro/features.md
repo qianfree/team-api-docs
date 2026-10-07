@@ -11,11 +11,11 @@ title: 功能特性
 | 特性 | 一句话说明 | 相关文档 |
 |------|-----------|---------|
 | 多租户架构 | 行级数据隔离，双独立用户体系 | [使用指南](/guide/tenant/) |
-| 25+ 供应商接入 | OpenAI / Claude / Gemini / DeepSeek / 通义 / 智谱 / Ollama… | [API 参考](/api/openai-compatible) |
-| OpenAI 兼容 API | 替换 `base_url` 即可迁移 | [OpenAI 兼容接口](/api/openai-compatible) |
+| 多家供应商接入 | OpenAI / Claude / Gemini / DeepSeek / 通义 / 智谱 / Ollama… | [API 概览](/api/overview) |
+| OpenAI 兼容 API | 替换 `base_url` 即可迁移 | [对话补全](/api/chat-completions) · [图像生成](/api/images) · [视频生成](/api/video-generations) |
 | 多协议客户端接入 | Claude / Gemini 原生协议端点直连 | [Claude 接口](/api/anthropic) · [Gemini 接口](/api/gemini) |
 | 智能渠道调度 | 优先级 / 权重 / 故障转移 / 渠道亲和 | [架构概览](/intro/architecture#渠道健康与故障转移) |
-| 五层额度模型 | 钱包 → 套餐 → 成员 → 项目 → Key | [架构概览](/intro/architecture#计费引擎状态机) |
+| 三层额度模型 | 钱包 → 项目 / 成员 → Key | [架构概览](/intro/architecture#计费引擎状态机) |
 | 实时计费引擎 | 预扣 → 结算 → 退款，并发安全 | [架构概览](/intro/architecture#计费引擎状态机) |
 | 双控制台 | 管理后台 + 租户控制台 | [管理后台](/guide/admin/) · [租户控制台](/guide/tenant/) |
 | 全链路可观测 | 请求日志 / 操作审计 / 监控告警 | [排障指南](/troubleshooting/) |
@@ -30,9 +30,9 @@ title: 功能特性
 
 一套部署即可同时服务多个组织，天然适合「对外提供模型服务」的 SaaS 场景，也适合「一个平台服务多个内部部门」的企业场景。
 
-## 25+ 大模型供应商
+## 多家大模型供应商
 
-统一接入 OpenAI、Claude、Gemini、DeepSeek、通义千问、智谱、Ollama 等 25+ 供应商，渠道**统一配置、统一监控、统一调度**：
+统一接入 OpenAI、Claude、Gemini、DeepSeek、通义千问、智谱、Ollama 等供应商，渠道**统一配置、统一监控、统一调度**：
 
 - **多协议接入** —— 同时支持 OpenAI、Anthropic、Gemini 等原生协议，按渠道类型自动适配；
 - **模型映射** —— 对外模型名与上游模型解耦，可把请求映射到任意上游渠道；
@@ -74,7 +74,7 @@ curl https://your-domain/v1/chat/completions \
   }'
 ```
 
-接口细节见 [OpenAI 兼容接口](/api/openai-compatible)。
+接口细节见 [API 概览](/api/overview) 与[对话补全](/api/chat-completions)。
 
 除 OpenAI 协议外，平台同样以**原生协议**对客户端暴露 Claude 与 Gemini 接口，Claude Code、Gemini SDK 等客户端改指向网关即可直连：
 
@@ -95,19 +95,17 @@ curl https://your-domain/v1/chat/completions \
 
 调度机制的完整设计见[架构概览 · 渠道健康与故障转移](/intro/architecture#渠道健康与故障转移)。
 
-## 五层额度模型
+## 三层额度模型
 
-`租户钱包 → 套餐额度 → 成员额度 → 项目预算 → Key 额度`，逐层限额、逐层核算：
+`租户钱包 → 项目预算 / 成员额度 → Key 额度`，逐层限额、逐层核算：
 
 | 层级 | 控制对象 | 典型用途 |
 |------|---------|---------|
 | 租户钱包 | 租户总余额 | 租户级消费上限与结算 |
-| 套餐额度 | 套餐有效期内的额度 | 套餐内多项目共享 |
-| 成员额度 | 单个成员 | 控制个人用量 |
-| 项目预算 | 单个项目 | 项目成本核算 |
+| 项目预算 / 成员额度 | Key 的归属主体（项目或成员） | 项目成本核算、控制个人用量 |
 | Key 额度 | 单把 Key | 应用 / 环境级限额 |
 
-一次请求逐层校验，任一层不足即拒绝并返回明确错误码。
+Key 挂在成员名下时校验成员额度，挂在项目名下时校验项目预算。一次请求逐层校验，任一层不足即拒绝并返回明确错误码。
 
 ## 实时计费引擎
 
@@ -122,7 +120,7 @@ curl https://your-domain/v1/chat/completions \
 
 ## 双控制台
 
-### 管理后台（Naive UI）
+### 管理后台
 
 面向**平台运营方**：
 
@@ -138,7 +136,7 @@ curl https://your-domain/v1/chat/completions \
 
 ![管理后台 — 仪表盘](/images/admin_dashboard.png)
 
-### 租户控制台（TailwindCSS）
+### 租户控制台
 
 面向**终端用户**：
 
@@ -146,7 +144,7 @@ curl https://your-domain/v1/chat/completions \
 - **团队管理** —— 团队与成员、角色权限
 - **项目管理** —— 项目预算、项目级 Key
 - **Key 管理** —— 签发 / 吊销 / 限额 / 用量查看
-- **套餐与账单** —— 套餐额度、钱包充值、消费明细
+- **套餐与账单** —— 套餐订阅、钱包充值、消费明细
 - **Playground** —— 在线对话体验、在线图像体验，开箱即用
 
 ![租户控制台 — 在线 Playground](/images/tenant_playground_chat.png)
@@ -189,8 +187,8 @@ curl https://your-domain/v1/chat/completions \
 - [x] 在线升级
 - [x] 支付模块（Easy Pay）
 - [x] 图像生成同步转异步
-- [ ] 完善大模型支持，特别是图像与视频
-- [ ] 角色管理（管理员 / 销售 / 技术支持等预设角色，方便运营团队协作）
+- [x] 完善大模型支持，特别是图像与视频
+- [x] 角色管理（管理员 / 销售 / 技术支持等预设角色，方便运营团队协作）
 - [ ] 插件功能
 - [ ] 开放平台（对接 OA 能力，方便企业对接管理）
 

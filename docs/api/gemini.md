@@ -206,6 +206,6 @@ for chunk in stream:
 
 ## 与其他协议的关系
 
-- 同一把 Key 可同时调用 [OpenAI 兼容接口](/api/openai-compatible)与 [Anthropic Claude 接口](/api/anthropic)；
+- 同一把 Key 可同时调用[对话补全](/api/chat-completions)与 [Anthropic Claude 接口](/api/anthropic)；
 - 路径中的模型名（`gemini-2.5-flash` 等）为平台对外模型名，经[管理后台 · 渠道配置](/guide/admin/channels)的模型映射解析到实际渠道 —— 用 Gemini 协议调用，不要求上游一定是 Google 渠道；
 - 用量、计费、限额、审计行为与其他协议完全一致，均可在请求日志中按 Request ID 追踪。

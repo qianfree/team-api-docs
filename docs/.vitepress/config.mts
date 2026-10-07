@@ -6,7 +6,7 @@ const nav = [
   { text: '部署', link: '/deploy/docker-compose', activeMatch: '/deploy/' },
   { text: '配置', link: '/config/config-yaml', activeMatch: '/config/' },
   { text: '使用指南', link: '/guide/admin', activeMatch: '/guide/' },
-  { text: 'API', link: '/api/openai-compatible', activeMatch: '/api/' },
+  { text: 'API', link: '/api/overview', activeMatch: '/api/' },
   {
     text: '帮助',
     activeMatch: '/(faq|troubleshooting|changelog)/',
@@ -101,12 +101,41 @@ const sidebar = {
   ],
   '/api/': [
     {
-      text: 'API 参考',
+      text: '开始使用',
+      items: [{ text: 'API 概览', link: '/api/overview' }],
+    },
+    {
+      text: '对话接口',
       items: [
-        { text: 'OpenAI 兼容接口', link: '/api/openai-compatible' },
+        { text: '对话补全', link: '/api/chat-completions' },
         { text: 'Responses API', link: '/api/responses' },
         { text: 'Anthropic Claude 接口', link: '/api/anthropic' },
         { text: 'Gemini 接口', link: '/api/gemini' },
+      ],
+    },
+    {
+      text: '图像生成',
+      items: [
+        { text: '图像生成（同步 / 编辑）', link: '/api/images' },
+        { text: '异步图像任务', link: '/api/images-async' },
+      ],
+    },
+    {
+      text: '视频生成',
+      items: [
+        { text: '视频生成（通用任务）', link: '/api/video-generations' },
+        { text: 'OpenAI Videos 协议', link: '/api/videos-openai' },
+        { text: 'MiniMax / DashScope 官方协议', link: '/api/videos-minimax-dashscope' },
+      ],
+    },
+    {
+      text: '更多能力',
+      items: [
+        { text: '向量嵌入', link: '/api/embeddings' },
+        { text: '语音接口', link: '/api/audio' },
+        { text: '重排序与内容审核', link: '/api/rerank-moderations' },
+        { text: '实时通信 Realtime', link: '/api/realtime' },
+        { text: '音乐生成 Suno', link: '/api/suno' },
       ],
     },
     {
@@ -124,12 +153,6 @@ const sidebar = {
     {
       text: '排障指南',
       items: [{ text: '排障总览', link: '/troubleshooting/' }],
-    },
-  ],
-  '/pricing/': [
-    {
-      text: '授权与定价',
-      items: [{ text: '授权与定价', link: '/pricing/' }],
     },
   ],
 }
@@ -175,7 +198,7 @@ export default withMermaid(
     ],
     footer: {
       message: '基于 AGPL-3.0 许可发布',
-      copyright: `Copyright © 2024-${new Date().getFullYear()} Team-API`,
+      copyright: 'Copyright © 2026 Team-API',
     },
     docFooter: { prev: '上一篇', next: '下一篇' },
     lastUpdated: { text: '最后更新' },
